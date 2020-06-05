@@ -1,18 +1,6 @@
 <template lang="pug">
   main
-    div.fluid.blue-grey.darken-4.white--text.full-height
-      v-layout.align-center.justify-center
-        div(v-if='this.$vuetify.breakpoint.width < 1100')
-          v-flex.text-center.display-3.font-weight-thin
-            span.name PIN
-        div(v-else)
-          v-flex.text-center.display-3.font-weight-thin
-            span.name LUIZ FELIPE <span>|</span> PIN
-    a.blue-grey--text.text--darken-2.read(href="#", @click="$vuetify.goTo('.myself', {offset: 0})")
-      p.ma-0.title More
-      v-icon.blue-grey--text.text--darken-2 keyboard_arrow_down
-
-    div.fluid.full-height.blue-grey.lighten-4.myself
+    div.fluid.full-height.blue-grey.lighten-5
       v-layout.align-center.wrap.py-5
         v-flex.offset-xs1.xs10.offset-md1.md5.details
           span.display-2.font-weight-bold.blue-grey--text.text--darken-2.myname PIN
@@ -24,6 +12,9 @@
             p 🏢 Currently working as a senior software engineer at <a target="_blank" href="https://ciandt.com">ciandt</a> where I joined in april 2008 as an intern
             p ❤️ Passionate about health and fitness, nutrition, each and every sport on earth (and maybe out of it if I have the chance)
             p 💪 I'm also a mediocre bodybuilder, trying to get to 212/7%@5'8, missing about some pounds yet :(
+    a.blue-grey--text.text--lighten-3.read(href="#", @click="$vuetify.goTo('.about', {offset: 0})")
+      p.ma-0.title Read More
+      v-icon.blue-grey--text.text--lighten-3 keyboard_arrow_down
 
     div.fluid.full-height.blue-grey.darken-4.white--text.about
       v-layout.align-center.justify-center
@@ -34,7 +25,7 @@
             v-flex.sm12.md6.lg3
               p.title Software Development
               ul
-                li Java, Javascript, C#, python, just to name a few
+                li Java, Javascript, C#, python, Golang, just to name a few
                 li VueJS, React, Redux, AngularJS, Material, Bootstrap, and others, to name some more, but from a different end
                 li Cloud Computing, Microservices, APIs, fullstack web apps
                 li Plenty others 2 to 5 combined letters
@@ -43,7 +34,8 @@
               ul
                 li Google Cloud Platform (GCP)
                 li Amazon Web Services (AWS)
-                li Local Infrastructure, NAS, etc
+                li Microsoft Azure
+                li Local Infrastructure, NAS, network, etc
                 li Home Automation
             v-flex.sm12.md6.lg3
               p.title Community
@@ -57,7 +49,7 @@
                 li Self thought nutrition through online courses and other articles
                 li Workout programs designer
 
-    div.fluid.full-height.blue-grey.lighten-4.articles
+    div.fluid.full-height.blue-grey.lighten-5.articles
       v-layout.align-center.justify-center
         v-flex.xs9.md7
           p.pb-5.display-1.font-weight-black PUBLICATIONS
@@ -65,7 +57,7 @@
           p.pb-5.subheading These are my latest publications on <a target="_blank" href="https://medium.com/@luizfelipefb">medium</a>, but bear in mind the <strong>self</strong>-proclaimed thing. I'm no writer what so ever, nor english is my first language, but I do my best. Appreciation in the form of claps 👏 is always welcomed. "Like if you like it, dislike if you did, subscribe, check out the link where to buy the stuff feature on and don't forget to click the notifications bell icon"<sup>LTT</sup>.
           .text-center(v-show="articles.length === 0")
             v-progress-circular(:size="70", :width="7", indeterminate)
-          v-carousel.blue-grey.lighten-3.articles-list(light, v-show="articles.length > 0", :height="400", :hide-delimiters="$vuetify.breakpoint.mdAndDown")
+          v-carousel.blue-grey.lighten-4.articles-list(light, v-show="articles.length > 0", :height="400", :hide-delimiters="$vuetify.breakpoint.mdAndDown")
             v-carousel-item.pa-5(v-for="item in articles", :key="item.url")
               a(:alt="item.title", :href="item.url", target="_blank")
                 v-img.mb-3(contain, :src="item.img", max-height="180")
@@ -87,13 +79,6 @@
 .full-height
   min-height: 100vh
   display: flex
-
-.name
-  letter-spacing: 36px
-
-  span
-    font-weight: normal
-    color: #455a64
 
 .details
   letter-spacing: 2px

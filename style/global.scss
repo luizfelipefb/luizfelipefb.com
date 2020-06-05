@@ -1,0 +1,28 @@
+.v-application {
+  font-family: 'Lato', sans-serif;
+
+  .display-1,
+  .display-2,
+  .headline,
+  .title {
+    font-family: 'Lato', sans-serif !important;
+  }
+}
+
+::-webkit-scrollbar {
+  width: 13px;
+}
+
+::-webkit-scrollbar-corner {
+  background: transparent;
+}
+
+::-webkit-scrollbar-track {
+  background: #cfd8dc;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #9ea7aa;
+  border-radius: 10px;
+  border: 2px solid #cfd8dc;
+}

@@ -1,5 +1,5 @@
 <template lang="pug">
-  v-app-bar.v-app-bar--fixed.blue-grey.lighten-5(flat, height="100px", :style="{'opacity': opacity, 'transition': 'opacity 0.75s ease'}")
+  v-app-bar.v-app-bar--fixed.blue-grey.lighten-4(flat, height="100px", :style="{'opacity': opacity, 'transition': 'opacity 0.75s ease'}")
     v-layout.justify-center
       v-flex.md7.blue-grey--text.text--darken-2
         .display-1.font-weight-black PIN

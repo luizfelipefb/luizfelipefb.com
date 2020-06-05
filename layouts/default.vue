@@ -7,6 +7,10 @@
     Footer
 </template>
 
+<style lang="scss">
+@import '~/style/global.scss';
+</style>
+
 <script>
 import Footer from '~/components/Footer.vue'
 import Navbar from '~/components/Navbar.vue'
