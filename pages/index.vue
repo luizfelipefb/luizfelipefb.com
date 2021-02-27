@@ -9,9 +9,9 @@
           .separator.blue-grey.darken-2
           .short
             p 📍 Born, raised and living in brazil since '85
-            p 🏢 Currently working as a senior software engineer at <a target="_blank" href="https://ciandt.com">ciandt</a> where I joined in april 2008 as an intern
-            p ❤️ Passionate about health and fitness, nutrition, each and every sport on earth (and maybe out of it if I have the chance)
-            p 💪 I'm also a mediocre bodybuilder, trying to get to 212/7%@5'8, missing about some pounds yet :(
+            p 🏢 Currently working as a senior software engineer at <a target="_blank" href="https://ciandt.com">ciandt</a> where I joined in april 2008
+            p ❤️ Passionate about health and fitness, nutrition, each and every sport on earth (and maybe out of it, if I ever get the chance)
+            p 💪 I'm also a mediocre bodybuilder, trying to get to 212/7%@5'8, missing a few pounds :(
     a.blue-grey--text.text--lighten-3.read(href="#", @click="$vuetify.goTo('.about', {offset: 0})")
       p.ma-0.title Read More
       v-icon.blue-grey--text.text--lighten-3 keyboard_arrow_down
@@ -23,31 +23,34 @@
           p.pb-5.subheading I am a problem solving oriented person. I like to think that I can overcome challenges even if I don't have the knowledge to do so, but I can learn what ever I need to solve the problem and move to the next one. This is my goal, professionally, and in life one might say, to overcome challenges thrown at me, no matter what. In general, I am very patient and an easy person to deal with. To put it simple, my objective is to get things done. So, how can I help?
           v-layout.body-2.wrap.cards
             v-flex.sm12.md6.lg3
-              p.title Software Development
+              p.title General
               ul
-                li Java, Javascript, C#, python, Golang, just to name a few
-                li VueJS, React, Redux, AngularJS, Material, Bootstrap, and others, to name some more, but from a different end
-                li Cloud Computing, Microservices, APIs, fullstack web apps
-                li Plenty others 2 to 5 combined letters
-            v-flex.sm12.md6.lg3
-              p.title Infrastructure
-              ul
+                li Cloud Computing, Microservices, APIs
                 li Google Cloud Platform (GCP)
                 li Amazon Web Services (AWS)
                 li Microsoft Azure
-                li Local Infrastructure, NAS, network, etc
+                li DevOps
+                li Infrastructure, NAS, network, VPN, vnet, etc
                 li Home Automation
+            v-flex.sm12.md6.lg3
+              p.title Software Development
+              ul
+                li Java, Javascript, C#, python, Golang, NodeJS, just to name a few
+                li VueJS, React, Redux, AngularJS, Material, Bootstrap, and others, to name some more, but from a different end
+                li Fullstack Development
+                li Plenty others 2 to 5 combined letters
             v-flex.sm12.md6.lg3
               p.title Community
               ul
                 li Open source projects on gihtub
+                li GitLab contributor
                 li Helper (anyway possible)
                 li Writer?
             v-flex.sm12.md6.lg3
               p.title Health and Fitness
               ul
                 li Self thought nutrition through online courses and other articles
-                li Workout programs designer
+                li Workout programs designer, lol
 
     div.fluid.full-height.blue-grey.lighten-5.articles
       v-layout.align-center.justify-center
@@ -64,6 +67,42 @@
                 blockquote.subheading.font-weight-bold {{item.title}}
                 blockquote.subheading.font-weight-thin {{item.subtitle}}
 </template>
+
+<script>
+const htmlToText = require('html-to-text')
+const ellipsis = require('text-ellipsis')
+
+export default {
+  data() {
+    return {
+      articles: []
+    }
+  },
+  mounted() {
+    this.fetchArticles('luizfelipefb').then((response) => {
+      response.items.forEach((post) => {
+        const description = htmlToText.fromString(post.description, {
+          ignoreHref: true,
+          ignoreImage: true
+        })
+        this.articles.push({
+          url: post.link,
+          img: post.thumbnail,
+          title: post.title,
+          subtitle: ellipsis(description, 480),
+          tags: post.categories
+        })
+      })
+    })
+  },
+  methods: {
+    fetchArticles(username) {
+      const url = `https://api.rss2json.com/v1/api.json?rss_url=https://medium.com/feed/@${username}`
+      return this.$axios.$get(url)
+    }
+  }
+}
+</script>
 
 <style lang="sass">
 .read
@@ -112,39 +151,3 @@
       color: inherit
       text-decoration: none
 </style>
-
-<script>
-const htmlToText = require('html-to-text')
-const ellipsis = require('text-ellipsis')
-
-export default {
-  data() {
-    return {
-      articles: []
-    }
-  },
-  mounted() {
-    this.fetchArticles('luizfelipefb').then((response) => {
-      response.items.forEach((post) => {
-        const description = htmlToText.fromString(post.description, {
-          ignoreHref: true,
-          ignoreImage: true
-        })
-        this.articles.push({
-          url: post.link,
-          img: post.thumbnail,
-          title: post.title,
-          subtitle: ellipsis(description, 480),
-          tags: post.categories
-        })
-      })
-    })
-  },
-  methods: {
-    fetchArticles(username) {
-      const url = `https://api.rss2json.com/v1/api.json?rss_url=https://medium.com/feed/@${username}`
-      return this.$axios.$get(url)
-    }
-  }
-}
-</script>
