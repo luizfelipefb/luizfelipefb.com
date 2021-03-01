@@ -9,7 +9,7 @@
           .separator.blue-grey.darken-2
           .short
             p 📍 Born, raised and living in brazil since '85
-            p 🏢 Currently working as a senior software engineer at <a target="_blank" href="https://ciandt.com">ciandt</a> where I joined in april 2008
+            p 🏢 Currently working as software engineer at <a target="_blank" href="https://ciandt.com">ciandt</a> where I joined in april 2008
             p ❤️ Passionate about health and fitness, nutrition, each and every sport on earth (and maybe out of it, if I ever get the chance)
             p 💪 I'm also a mediocre bodybuilder, trying to get to 212/7%@5'8, missing a few pounds :(
     a.blue-grey--text.text--lighten-3.read(href="#", @click="$vuetify.goTo('.about', {offset: 0})")
