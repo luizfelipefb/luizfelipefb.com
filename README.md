@@ -1,6 +1,6 @@
-# https://3.14n.dev
+# https://luizfelipefb.com
 
-![Deploy](https://github.com/luizfelipefb/3.14n.dev/workflows/Deploy/badge.svg)
+![Deploy](https://github.com/luizfelipefb/luizfelipefb.com/workflows/Deploy/badge.svg)
 
 ## Build
 
