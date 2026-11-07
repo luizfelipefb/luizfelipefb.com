@@ -256,12 +256,13 @@ const links = [
     margin-top: 0;
   }
 
+  /* Revealed by clipping a percentage of its own box, not by a width in ch units. The ch width was
+     computed with the fallback font, so a late font swap cut off the last letter on first visit. */
   .typed {
     display: inline-block;
-    overflow: hidden;
     white-space: nowrap;
     vertical-align: bottom;
-    width: 0;
+    clip-path: inset(0 100% 0 0);
     animation: type var(--t) steps(var(--n)) var(--d) forwards;
   }
 
@@ -273,7 +274,7 @@ const links = [
 
   @keyframes type {
     to {
-      width: calc(var(--n) * 1ch);
+      clip-path: inset(0);
     }
   }
 
@@ -448,7 +449,7 @@ const links = [
     }
 
     .typed {
-      width: auto;
+      clip-path: none;
       animation: none;
     }
 
